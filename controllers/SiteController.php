@@ -2,14 +2,24 @@
 
 namespace app\controllers;
 
+use app\models\LoginForm;
+use app\models\ContactForm;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use yii\helpers\Url;
 
+/**
+ * @SWG\Swagger(
+ *     basePath="/",
+ *     produces={"application/json"},
+ *     consumes={"application/json"},
+ *     @SWG\Info(version="srv 1.0", title="REST APIs"),
+ * )
+ */
 class SiteController extends Controller
 {
     /**
@@ -44,6 +54,16 @@ class SiteController extends Controller
     public function actions()
     {
         return [
+            'docs' => [
+                'class' => 'yii2mod\swagger\SwaggerUIRenderer',
+                'restUrl' => Url::to(['site/json-schema']),
+            ],
+            'json-schema' => [
+                'class' => 'yii2mod\swagger\OpenAPIRenderer',
+                'scanDir' => [
+                    Yii::getAlias('@app/controllers'),
+                ],
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -61,7 +81,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect('site/docs');
     }
 
     /**
