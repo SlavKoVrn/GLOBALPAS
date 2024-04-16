@@ -12,3 +12,6 @@ modules:
       - Filesystem
       - Yii2
       - Asserts
+      - REST:
+         depends: PhpBrowser
+         url: http://globalpas.kadastrcard.ru/
