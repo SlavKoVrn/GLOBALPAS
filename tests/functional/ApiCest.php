@@ -2,7 +2,8 @@
 
 class ApiCest
 {
-    private $title = 'Название книги',
+    private $id = 0,
+            $title = 'Название книги',
             $author_id = 1,
             $pages = 300,
             $language = 'русский',
@@ -75,6 +76,7 @@ class ApiCest
 
         $responseContent = $I->grabResponse();
         $jsonResponse = json_decode($responseContent, true);
+        $this->id = $jsonResponse['id'];
         $I->sendGET('/books',[
             'search[title]' => $this->title,
         ]);
@@ -83,4 +85,28 @@ class ApiCest
 
     }
 
+    public function updateBook(\FunctionalTester $I)
+    {
+        $I->sendPUT('/books/'.$this->id,[
+            'title' => $this->title.' changed',
+        ]);
+        $I->seeResponseCodeIs(200);
+
+        $responseContent = $I->grabResponse();
+        $jsonResponse = json_decode($responseContent, true);
+
+        $I->sendGET('/books',[
+            'search[title]' => $jsonResponse['title'],
+        ]);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContainsJson(['id' => $this->id]);
+
+    }
+
+    public function deleteBook(\FunctionalTester $I)
+    {
+        $I->sendDELETE('/books/'.$this->id);
+        $I->seeResponseCodeIs(204);
+
+    }
 }

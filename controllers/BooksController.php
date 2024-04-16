@@ -132,5 +132,69 @@ class BooksController extends Base
  *         response="201",
  *         description="Created"
  *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     )
+ * )
+ * @SWG\Put (path="/books/{id}",
+ *     tags={"Books"},
+ *     summary="Update book",
+ *      @SWG\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID",
+ *         required=true,
+ *         type="integer",
+ *     ),
+ *      @SWG\Parameter(
+ *         name="body",
+ *         in="body",
+ *         description="book data",
+ *         required=true,
+ *         @SWG\Schema(
+ *              @SWG\Property(property="title", type="string", example="Название книги"),
+ *              @SWG\Property(property="author_id", type="integer", example=1),
+ *              @SWG\Property(property="pages", type="integer", example=300),
+ *              @SWG\Property(property="language", type="string", example="русский"),
+ *              @SWG\Property(property="genre", type="string", example="роман"),
+ *              @SWG\Property(property="description", type="string", example="Описание книги"),
+ *         )
+ *     ),
+ *     @SWG\Response(
+ *         response="200",
+ *         description="Updated successfully"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     ),
+ *     @SWG\Response(
+ *         response="404",
+ *         description="Not found"
+ *     )
+ * )
+ * @SWG\Delete (path="/books/{id}",
+ *     tags={"Books"},
+ *     summary="Delete book",
+ *      @SWG\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID",
+ *         required=true,
+ *         type="integer",
+ *     ),
+ *     @SWG\Response(
+ *         response="204",
+ *         description="Deleted"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     ),
+ *     @SWG\Response(
+ *         response="404",
+ *         description="Not found"
+ *     )
  * )
  */
