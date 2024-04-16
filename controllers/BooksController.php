@@ -111,4 +111,26 @@ class BooksController extends Base
  *         description="Not found"
  *     )
  * )
+ * @SWG\Post (path="/books",
+ *     tags={"Books"},
+ *     summary="Create new book",
+ *      @SWG\Parameter(
+ *         name="body",
+ *         in="body",
+ *         description="book data",
+ *         required=true,
+ *         @SWG\Schema(
+ *              @SWG\Property(property="title", type="string", example="Название книги"),
+ *              @SWG\Property(property="author_id", type="integer", example=1),
+ *              @SWG\Property(property="pages", type="integer", example=300),
+ *              @SWG\Property(property="language", type="string", example="русский"),
+ *              @SWG\Property(property="genre", type="string", example="роман"),
+ *              @SWG\Property(property="description", type="string", example="Описание книги"),
+ *         )
+ *     ),
+ *     @SWG\Response(
+ *         response="201",
+ *         description="Created"
+ *     ),
+ * )
  */

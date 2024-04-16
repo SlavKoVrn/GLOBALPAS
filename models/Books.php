@@ -72,17 +72,17 @@ class Books extends \yii\db\ActiveRecord
 
     public function getAuthorName()
     {
-        return $this->author->name;
+        return $this->author->name ?? '';
     }
 
     public function getAuthorCountry()
     {
-        return $this->author->country;
+        return $this->author->country ?? '';
     }
 
     public function getAuthorBirth()
     {
-        return $this->author->birth_year;
+        return $this->author->birth_year ?? '';
     }
 
     /**

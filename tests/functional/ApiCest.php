@@ -2,6 +2,12 @@
 
 class ApiCest
 {
+    private $title = 'Название книги',
+            $author_id = 1,
+            $pages = 300,
+            $language = 'русский',
+            $genre = 'роман',
+            $description = 'Описание книги';
 
     public function getBooksAndAuthors(\FunctionalTester $I)
     {
@@ -47,12 +53,34 @@ class ApiCest
     public function searchBooksByAuthors(\FunctionalTester $I)
     {
         $I->sendGET('/books',[
-            'search[authors][1]' => 1,
-            'search[authors][2]' => 2,
-            'search[authors][3]' => 3,
+            'search[authors][1]' => 21,
+            'search[authors][2]' => 22,
+            'search[authors][3]' => 23,
         ]);
         $I->seeResponseCodeIs(200);
         $I->seeHttpHeader('X-Pagination-Total-Count', '3');
+    }
+
+    public function createNewBook(\FunctionalTester $I)
+    {
+        $I->sendPOST('/books',[
+            'title' => $this->title,
+            'author_id' => $this->author_id,
+            'pages' => $this->pages,
+            'language' => $this->language,
+            'genre' => $this->genre,
+            'description' => $this->description,
+        ]);
+        $I->seeResponseCodeIs(201);
+
+        $responseContent = $I->grabResponse();
+        $jsonResponse = json_decode($responseContent, true);
+        $I->sendGET('/books',[
+            'search[title]' => $this->title,
+        ]);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContainsJson(['id' => $jsonResponse['id']]);
+
     }
 
 }
