@@ -56,10 +56,6 @@ class BooksController extends Base
  *     @SWG\Response(
  *         response="404",
  *         description="Not found"
- *     ),
- *     @SWG\Response(
- *         response="400",
- *         description="Bad request"
  *     )
  * )
  */
