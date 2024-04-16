@@ -16,6 +16,7 @@ class ApiCest
         $I->seeResponseContains('pages');
         $I->seeResponseContains('language');
         $I->seeResponseContains('genre');
+        $I->dontSeeResponseContains('description');
 
         $I->sendGET('/books/2');
         $I->seeResponseContainsJson(['id' => 2]);

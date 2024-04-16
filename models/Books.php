@@ -54,4 +54,43 @@ class Books extends \yii\db\ActiveRecord
             'description' => 'Description',
         ];
     }
+
+    public function fields()
+    {
+        return [
+            'id',
+            'title',
+            'author_id',
+            'author_name' => 'authorName',
+            'author_country' => 'authorCountry',
+            'author_birth' => 'authorBirth',
+            'pages',
+            'language',
+            'genre',
+        ];
+    }
+
+    public function getAuthorName()
+    {
+        return $this->author->name;
+    }
+
+    public function getAuthorCountry()
+    {
+        return $this->author->country;
+    }
+
+    public function getAuthorBirth()
+    {
+        return $this->author->birth_year;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor()
+    {
+        return $this->hasOne(Authors::class, ['id' => 'author_id']);
+    }
+
 }
