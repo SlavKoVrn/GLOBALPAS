@@ -43,4 +43,15 @@ class ApiCest
 
     }
 
+    public function searchBooksByAuthors(\FunctionalTester $I)
+    {
+        $I->sendGET('/books',[
+            'search[authors][1]' => 1,
+            'search[authors][2]' => 2,
+            'search[authors][3]' => 3,
+        ]);
+        $I->seeResponseCodeIs(200);
+        $I->seeHttpHeader('X-Pagination-Total-Count', '3');
+    }
+
 }

@@ -17,6 +17,7 @@ use Yii;
  */
 class Books extends \yii\db\ActiveRecord
 {
+    public $authors = [];
     /**
      * {@inheritdoc}
      */
@@ -34,6 +35,7 @@ class Books extends \yii\db\ActiveRecord
             [['author_id', 'pages'], 'integer'],
             [['description'], 'string'],
             [['title', 'language', 'genre'], 'string', 'max' => 255],
+            [['authors'], 'safe'],
         ];
     }
 
