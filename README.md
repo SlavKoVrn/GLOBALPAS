@@ -1,3 +1,227 @@
+<h2 align="center">Демо версия</h2>
+<a href="http://globalpas.kadastrcard.ru/" target="_blank">http://globalpas.kadastrcard.ru/</a>
+
+<h2 align="center">Тестовое задание</h2>
+<div class=WordSection1>
+
+<p class=MsoNormal>Напишите REST API с использованием фреймворка Yii2 на языке
+PHP и хранением данных в базе данных Postgres. </p>
+
+<p class=MsoNormal>Работа с проектом должна вестись через GitHub.</p>
+
+<p class=MsoNormal>Функционал API должен соответствовать следующим требованиям:</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>1. Получение списка книг</p>
+
+<p class=MsoNormal>Метод: GET</p>
+
+<p class=MsoNormal>URL: /books</p>
+
+<p class=MsoNormal>Ответ: массив объектов книг, каждый из которых содержит
+следующие поля:</p>
+
+<p class=MsoNormal>название книги</p>
+
+<p class=MsoNormal>автор</p>
+
+<p class=MsoNormal>число страниц</p>
+
+<p class=MsoNormal>язык</p>
+
+<p class=MsoNormal>жанр</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>2. Фильтрация списка книг</p>
+
+<p class=MsoNormal>Метод: GET</p>
+
+<p class=MsoNormal>URL: /books</p>
+
+<p class=MsoNormal>Параметры запроса:</p>
+
+<p class=MsoNormal>search - строка для поиска в названии и описании книги</p>
+
+<p class=MsoNormal>author - массив идентификаторов авторов, которые должны быть
+включены в результаты поиска</p>
+
+<p class=MsoNormal>Ответ: массив объектов книг, соответствующих заданным
+параметрам фильтра, каждый из которых содержит следующие поля:</p>
+
+<p class=MsoNormal>название книги</p>
+
+<p class=MsoNormal>автор</p>
+
+<p class=MsoNormal>число страниц</p>
+
+<p class=MsoNormal>язык</p>
+
+<p class=MsoNormal>жанр</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>3. Создание новой книги</p>
+
+<p class=MsoNormal>Метод: POST</p>
+
+<p class=MsoNormal>URL: /books</p>
+
+<p class=MsoNormal>Тело запроса должно быть в формате JSON. Формат объекта для
+создания книги может выглядеть следующим образом:</p>
+
+<p class=MsoNormal>{</p>
+
+<p class=MsoNormal><span style='mso-spacerun:yes'> </span>&quot;title&quot;:
+&quot;Название книги&quot;,</p>
+
+<p class=MsoNormal><span
+style='mso-spacerun:yes'> </span>&quot;author_id&quot;: 1,</p>
+
+<p class=MsoNormal><span style='mso-spacerun:yes'> </span>&quot;pages&quot;:
+300,</p>
+
+<p class=MsoNormal><span style='mso-spacerun:yes'> </span>&quot;language&quot;:
+&quot;русский&quot;,</p>
+
+<p class=MsoNormal><span style='mso-spacerun:yes'> </span>&quot;genre&quot;:
+&quot;роман&quot;,</p>
+
+<p class=MsoNormal><span
+style='mso-spacerun:yes'> </span>&quot;description&quot;: &quot;Описание
+книги&quot;</p>
+
+<p class=MsoNormal>}</p>
+
+<p class=MsoNormal>Здесь title, author_id, pages, language, genre и description
+- это параметры создаваемой книги. </p>
+
+<p class=MsoNormal>Они могут быть любыми, но должны соответствовать
+спецификации API. </p>
+
+<p class=MsoNormal>Идентификатор автора author_id должен быть целочисленным
+значением, соответствующим идентификатору существующего автора в базе данных.</p>
+
+<p class=MsoNormal>Ответ: объект созданной книги со всеми полями, включая
+уникальный идентификатор.</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>4. Редактирование/удаление книги</p>
+
+<p class=MsoNormal>Метод: PUT/DELETE</p>
+
+<p class=MsoNormal>URL: /books/{id}</p>
+
+<p class=MsoNormal>Тело запроса должно быть в формате JSON.</p>
+
+<p class=MsoNormal>Параметры запроса:</p>
+
+<p class=MsoNormal>id - идентификатор книги</p>
+
+<p class=MsoNormal>Ответ:</p>
+
+<p class=MsoNormal>PUT: объект книги со всеми полями, включая уникальный
+идентификатор, после изменения.</p>
+
+<p class=MsoNormal>DELETE: сообщение об успешном удалении книги из базы данных.</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>5. Список авторов</p>
+
+<p class=MsoNormal>Метод: GET</p>
+
+<p class=MsoNormal>URL: /authors</p>
+
+<p class=MsoNormal>Ответ: массив объектов авторов, каждый из которых содержит
+следующие поля:</p>
+
+<p class=MsoNormal>имя автора</p>
+
+<p class=MsoNormal>год рождения</p>
+
+<p class=MsoNormal>страна</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>6. Создание/редактирование автора</p>
+
+<p class=MsoNormal>Метод: POST/PUT</p>
+
+<p class=MsoNormal>URL: /authors</p>
+
+<p class=MsoNormal>Параметры запроса:</p>
+
+<p class=MsoNormal>name - имя автора</p>
+
+<p class=MsoNormal>birth_year - год рождения автора</p>
+
+<p class=MsoNormal>country - страна, в которой родился автор</p>
+
+<p class=MsoNormal>Ответ:</p>
+
+<p class=MsoNormal>POST: объект созданного автора со всеми полями, включая
+уникальный идентификатор.</p>
+
+<p class=MsoNormal>PUT: объект автора со всеми полями, включая уникальный
+идентификатор, после изменения.</p>
+
+<p class=MsoNormal>Требования</p>
+
+<p class=MsoNormal>Спецификация</p>
+
+<p class=MsoNormal>Требования к спецификации API на SwaggerHub:</p>
+
+<p class=MsoNormal>Для каждого метода API должно быть описано: URL, метод HTTP,
+параметры запроса и ответа.</p>
+
+<p class=MsoNormal>Сведения о параметрах запроса (обязательными ли они
+являются, какие они типы и т. д.).</p>
+
+<p class=MsoNormal>Сведения о кодах ответа и их описании.</p>
+
+<p class=MsoNormal>Поля в ответах должны быть полностью описаны, включая тип и
+описание.</p>
+
+<p class=MsoNormal>Приложение должно быть задокументировано так, чтобы другой
+разработчик в легко мог начать использовать API.</p>
+
+<p class=MsoNormal>Требования к коду</p>
+
+<p class=MsoNormal>Код должен быть чистым, хорошо организованным.</p>
+
+<p class=MsoNormal>Рекомендации</p>
+
+<p class=MsoNormal>Контроллеры</p>
+
+<p class=MsoNormal>Для реализации REST API в Yii2 рекомендуется использовать
+контроллеры, основанные на yii\rest\Controller.</p>
+
+<p class=MsoNormal>Контроллеры, унаследованные от этого класса, обеспечивают
+автоматическое формирование ответа в нужном формате (JSON или XML), </p>
+
+<p class=MsoNormal>а также реализуют основные методы CRUD (&quot;Create&quot;,
+&quot;Read&quot;, &quot;Update&quot;, &quot;Delete&quot;), соответствующие
+HTTP-методам.</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+<p class=MsoNormal>Фильтрация</p>
+
+<p class=MsoNormal>Вы можете использовать yii\data\DataFilter для реализации
+фильтрации данных в вашем API. </p>
+
+<p class=MsoNormal>Он работает в связке с ActiveDataProvider и предоставляет
+удобные возможности, которые позволяют гибко и просто фильтровать данные </p>
+
+<p class=MsoNormal>на основе пользовательских параметров.</p>
+
+<p class=MsoNormal>----------------------------------------</p>
+
+</div>
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
