@@ -29,3 +29,37 @@ class BooksController extends Base
     }
 
 }
+
+/**
+ * @SWG\Get (path="/books",
+ *     tags={"Books"},
+ *     summary="Get books",
+ *     @SWG\Response(
+ *         response = 200,
+ *         description="Successfull"
+ *     ),
+ * )
+ * @SWG\Get (path="/books/{id}",
+ *     tags={"Books"},
+ *     summary="Get book by ID",
+ *      @SWG\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID",
+ *         required=true,
+ *         type="integer",
+ *     ),
+ *     @SWG\Response(
+ *         response = 200,
+ *         description="Successfull"
+ *     ),
+ *     @SWG\Response(
+ *         response="404",
+ *         description="Not found"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     )
+ * )
+ */
