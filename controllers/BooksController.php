@@ -101,6 +101,20 @@ class BooksController extends Base
  *         @SWG\Items(type="integer"),
  *         collectionFormat="multi"
  *     ),
+ *     @SWG\Parameter(
+ *         name="page",
+ *         in="query",
+ *         description="number of page",
+ *         required=false,
+ *         type="integer",
+ *     ),
+ *     @SWG\Parameter(
+ *         name="sort",
+ *         in="query",
+ *         description="order by column",
+ *         required=false,
+ *         type="string",
+ *     ),
  *     @SWG\Response(
  *         response = 200,
  *         description="Successfull"
