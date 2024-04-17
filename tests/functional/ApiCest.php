@@ -139,4 +139,27 @@ class ApiCest
 
     }
 
+    public function updateAuthor(\FunctionalTester $I)
+    {
+        $I->sendPUT('/authors/'.$this->author_id,[
+            'name' => $this->author_name,
+            'country' => $this->author_country,
+            'birth_year' => $this->author_birth_year,
+        ]);
+        $I->seeResponseCodeIs(200);
+
+        $responseContent = $I->grabResponse();
+        $jsonResponse = json_decode($responseContent, true);
+
+        $I->sendGET('/authors/'.$jsonResponse['id']);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContainsJson([
+            'id' => $jsonResponse['id'],
+            'name' => $this->author_name,
+            'country' => $this->author_country,
+            'birth_year' => $this->author_birth_year,
+        ]);
+
+    }
+
 }

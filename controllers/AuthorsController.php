@@ -95,4 +95,61 @@ class AuthorsController extends Base
  *         description="Bad request"
  *     )
  * )
+ * @SWG\Put (path="/authors/{id}",
+ *     tags={"Authors"},
+ *     summary="Update author",
+ *      @SWG\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID",
+ *         required=true,
+ *         type="integer",
+ *     ),
+ *      @SWG\Parameter(
+ *         name="body",
+ *         in="body",
+ *         description="author data",
+ *         required=true,
+ *         @SWG\Schema(
+ *              @SWG\Property(property="name", type="string", example="Юрий Гагарин"),
+ *              @SWG\Property(property="country", type="string", example="Россия"),
+ *              @SWG\Property(property="birth_year", type="integer", example=1961),
+ *         )
+ *     ),
+ *     @SWG\Response(
+ *         response="200",
+ *         description="Updated successfully"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     ),
+ *     @SWG\Response(
+ *         response="404",
+ *         description="Not found"
+ *     )
+ * )
+ * @SWG\Delete (path="/authors/{id}",
+ *     tags={"Authors"},
+ *     summary="Delete author",
+ *      @SWG\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID",
+ *         required=true,
+ *         type="integer",
+ *     ),
+ *     @SWG\Response(
+ *         response="204",
+ *         description="Record deleted"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     ),
+ *     @SWG\Response(
+ *         response="404",
+ *         description="Not found"
+ *     )
+ * )
  */
