@@ -10,6 +10,10 @@ class ApiCest
             $genre = 'роман',
             $description = 'Описание книги';
 
+    private $author_name = 'Юрий Гагарин',
+            $author_birth_year = 1961,
+            $author_country = 'Россия';
+
     public function getBooksAndAuthors(\FunctionalTester $I)
     {
         $I->sendGET('/books');
@@ -116,4 +120,23 @@ class ApiCest
             "message" => "Record not found",
         ]);
     }
+
+    public function createNewAuthor(\FunctionalTester $I)
+    {
+        $I->sendPOST('/authors',[
+            'name' => $this->author_name,
+            'country' => $this->author_country,
+            'birth_year' => $this->author_birth_year,
+        ]);
+        $I->seeResponseCodeIs(201);
+
+        $responseContent = $I->grabResponse();
+        $jsonResponse = json_decode($responseContent, true);
+        $this->id = $jsonResponse['id'];
+        $I->sendGET('/authors/'.$this->id);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContainsJson(['id' => $jsonResponse['id']]);
+
+    }
+
 }

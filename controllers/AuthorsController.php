@@ -58,4 +58,27 @@ class AuthorsController extends Base
  *         description="Not found"
  *     )
  * )
+ * @SWG\Post (path="/authors",
+ *     tags={"Authors"},
+ *     summary="Create new author",
+ *      @SWG\Parameter(
+ *         name="body",
+ *         in="body",
+ *         description="author data",
+ *         required=true,
+ *         @SWG\Schema(
+ *              @SWG\Property(property="name", type="string", example="Юрий Гагарин"),
+ *              @SWG\Property(property="country", type="string", example="Россия"),
+ *              @SWG\Property(property="birth_year", type="integer", example=1961),
+ *         )
+ *     ),
+ *     @SWG\Response(
+ *         response="201",
+ *         description="Created"
+ *     ),
+ *     @SWG\Response(
+ *         response="400",
+ *         description="Bad request"
+ *     )
+ * )
  */
