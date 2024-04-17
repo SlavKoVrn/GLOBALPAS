@@ -34,6 +34,20 @@ class AuthorsController extends Base
  * @SWG\Get (path="/authors",
  *     tags={"Authors"},
  *     summary="Get authors",
+ *     @SWG\Parameter(
+ *         name="page",
+ *         in="query",
+ *         description="number of page",
+ *         required=false,
+ *         type="integer",
+ *     ),
+ *     @SWG\Parameter(
+ *         name="sort",
+ *         in="query",
+ *         description="order by column",
+ *         required=false,
+ *         type="string",
+ *     ),
  *     @SWG\Response(
  *         response = 200,
  *         description="Successfull"
