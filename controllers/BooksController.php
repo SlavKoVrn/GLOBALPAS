@@ -6,6 +6,8 @@ use app\models\Books;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\ActiveDataFilter;
+use yii\web\ServerErrorHttpException;
+use yii\web\NotFoundHttpException;
 
 class BooksController extends Base
 {
@@ -16,6 +18,7 @@ class BooksController extends Base
         $actions = parent::actions();
 
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+        unset($actions['delete']);
 
         return $actions;
     }
@@ -52,6 +55,21 @@ class BooksController extends Base
         ]);
 
         return $dataProvider;
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Books::findOne($id);
+
+        if ($model === null) {
+            throw new NotFoundHttpException("Record not found");
+        }
+
+        if ($model->delete() === false) {
+            throw new ServerErrorHttpException('Failed to delete the object for unknown reason.');
+        }
+
+        return ['message' => 'Record deleted successfully'];
     }
 
 }
@@ -185,8 +203,8 @@ class BooksController extends Base
  *         type="integer",
  *     ),
  *     @SWG\Response(
- *         response="204",
- *         description="Deleted"
+ *         response="200",
+ *         description="Record deleted successfully"
  *     ),
  *     @SWG\Response(
  *         response="400",

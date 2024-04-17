@@ -106,7 +106,14 @@ class ApiCest
     public function deleteBook(\FunctionalTester $I)
     {
         $I->sendDELETE('/books/'.$this->id);
-        $I->seeResponseCodeIs(204);
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseContainsJson(['message' => 'Record deleted successfully']);
 
+        $I->sendDELETE('/books/1000');
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseContainsJson([
+            "name" => "Not Found",
+            "message" => "Record not found",
+        ]);
     }
 }
